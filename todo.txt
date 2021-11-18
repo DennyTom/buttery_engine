@@ -1,8 +1,15 @@
 [ ] Main
     [X] Arg parsing, just input file
     [ ] Run the thing
+    [ ] Error check for template file read?
 [ ] Templates in Python
-    [ ] Main code
+    [x] Main code
+    [x] Includes
+    [ ] Keycodes
+    [ ] Pseudolayers
+    [ ] Keyboard_parameters
+    [ ] Keymaps
+    [ ] Buffers
     [ ] Chords
         [x] expand keycode
     [ ] Other stuff like layers, etc
