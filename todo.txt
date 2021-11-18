@@ -1,0 +1,24 @@
+[ ] Main
+    [X] Arg parsing, just input file
+    [ ] Run the thing
+[ ] Templates in Python
+    [ ] Main code
+    [ ] Chords
+        [x] expand keycode
+    [ ] Other stuff like layers, etc
+[ ] Constants
+    [x] Alt keycodes
+    [x] Keycode definitions list
+
+
+
+
+
+
+[ ] Parsing for normal layers?
+[ ] Ability to put "simple" chords into "control" chords
+[ ] Ability to extend the engine
+
+
+
+https://github.com/qmk/qmk_firmware/blob/e1203a222bb12ab9733916164a000ef3ac48da93/tmk_core/common/matrix.h

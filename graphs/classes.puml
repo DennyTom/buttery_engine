@@ -1,0 +1,31 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+
+class keyboard {
+    active_pseudolayer
+    mode
+    dance_timer
+    chord_timer
+}
+
+class chord {
+    state
+    function()
+}
+
+keyboard *-left- chord
+keyboard *-- pseudolayer
+keyboard *-- key
+
+pseudolayer o-- chord
+chord o-- key
+
+chord -- keyboard : affects >
+chord -- keyboard : manages <
+
+pseudolayer <|-- always_on
+chord <|-- specialized_chord
+
+
+@enduml
