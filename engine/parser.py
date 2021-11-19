@@ -2,6 +2,7 @@ import json
 from functools import reduce
 
 comma_separator = (lambda x, y: str(x) + ", " + str(y))
+newline_comma_separator = (lambda x, y: str(x) + ",\n\t" + str(y))
 string_sum = (lambda x, y: str(x) + " + " + str(y))
 newline_separator = (lambda x, y: str(x) + "\n" + str(y))
 
@@ -32,6 +33,8 @@ def parse_new_keycodes(keymap_def):
 }};"""
 
     return f"""#define HASH_TYPE {hash_type}
+#define NUMBER_OF_KEYS {number_of_keys}
+
 {reduce(newline_separator, keycodes)}
 
 {enum}"""
@@ -41,6 +44,49 @@ def parse_pseudolayers(keymap_def):
     {reduce(comma_separator, [pseudolayer["name"] for pseudolayer in keymap_def["pseudolayers"]])}
 }};"""
 
+def parse_layers(keymap_def):
+    layout_name = keymap_def["parameters"]["layout_function_name"]
+    layers = []
+    for idx, layer in enumerate(keymap_def["layers"]):
+        if layer["type"] == "auto":
+            keys = reduce(comma_separator, keymap_def["keys"])
+            layers.append(f"[{idx}] = {layout_name}({keys})")
+    return reduce(newline_comma_separator, layers)
+
+def parse_keyboard_parameters(keymap_def):
+    params = keymap_def["parameters"]
+    return f"""#define CHORD_TIMEOUT {params["chord_timeout"]}
+#define DANCE_TIMEOUT {params["dance_timeout"]}
+#define LEADER_TIMEOUT {params["leader_timeout"]}
+#define TAP_TIMEOUT {params["tap_timeout"]}
+#define LONG_PRESS_MULTIPLIER {params["long_press_multiplier"]}
+#define DYNAMIC_MACRO_MAX_LENGTH {params["dynamic_macro_max_length"]}
+#define COMMAND_MAX_LENGTH {params["command_max_length"]}
+#define STRING_MAX_LENGTH {params["string_max_length"]}
+#define LEADER_MAX_LENGTH {params["leader_max_length"]}
+#define DEFAULT_PSEUDOLAYER {params["default_pseudolayer"]}
+
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {{
+    {parse_layers(keymap_def)}
+}};
+size_t keymapsCount = {len(keymap_def["layers"])};
+
+uint8_t keycodes_buffer_array[] = {{
+    {reduce(comma_separator, [0 for _ in range(len(keymap_def["keys"]))])}
+}};
+
+uint8_t command_buffer[] = {{
+    {reduce(comma_separator, [0 for _ in range(params["command_max_length"])])}
+}};
+
+uint16_t leader_buffer[] = {{
+    {reduce(comma_separator, [0 for _ in range(params["leader_max_length"])])}
+}};
+
+uint8_t dynamic_macro_buffer[] = {{
+    {reduce(comma_separator, [0 for _ in range(params["dynamic_macro_max_length"])])}
+}};"""
+
 def buttery_parser(input_file):
     with open(input_file, "r") as file:
         keymap_def = json.load(file)
@@ -48,7 +94,7 @@ def buttery_parser(input_file):
     includes = parse_includes(keymap_def)
     keycodes = parse_new_keycodes(keymap_def)
     pseudolayers = parse_pseudolayers(keymap_def)
-    keyboard_parameters = ""
+    keyboard_parameters = parse_keyboard_parameters(keymap_def)
     keymaps = ""
     buffers = ""
     chords = ""

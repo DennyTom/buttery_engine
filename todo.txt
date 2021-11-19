@@ -7,8 +7,10 @@
     [x] Includes
     [x] Keycodes
     [x] Pseudolayers
-    [ ] Keyboard_parameters
+    [x] Keyboard_parameters
     [ ] Keymaps
+        [x] Auto
+        [ ] 
     [ ] Buffers
     [ ] Chords
         [x] expand keycode
@@ -17,8 +19,15 @@
     [x] Alt keycodes
     [x] Keycode definitions list
 
+[ ] Fix up README
+    [ ] Removed extra code -- just use a include, it will be more readable anyway
+    [ ] I don't use pyexpander anymore
+    [ ] Layers
 
-
+[ ] Fix up the engine
+    [ ] Get the tests running again
+    [ ] What is keycodes_buffer_array?
+    [ ] Transfer from keycodes_hash to an array
 
 
 
