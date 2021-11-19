@@ -1,6 +1,6 @@
 [ ] Main
     [X] Arg parsing, just input file
-    [ ] Run the thing
+    [ ] The main thing
     [ ] Error check for template file read?
 [ ] Templates in Python
     [x] Main code
@@ -8,33 +8,36 @@
     [x] Keycodes
     [x] Pseudolayers
     [x] Keyboard_parameters
-    [ ] Keymaps
+    [x] Keymaps
         [x] Auto
-        [ ] 
-    [ ] Buffers
+        [ x Manual
+    [x] Buffers
     [ ] Chords
         [x] expand keycode
-    [ ] Other stuff like layers, etc
 [ ] Constants
     [x] Alt keycodes
     [x] Keycode definitions list
+    [ ] Anything else?
 
 [ ] Fix up README
     [ ] Removed extra code -- just use a include, it will be more readable anyway
     [ ] I don't use pyexpander anymore
     [ ] Layers
 
+[ ] Delete the schema, seems to be wrong anyway
+
 [ ] Fix up the engine
     [ ] Get the tests running again
     [ ] What is keycodes_buffer_array?
     [ ] Transfer from keycodes_hash to an array
+    [ ] https://github.com/qmk/qmk_firmware/blob/e1203a222bb12ab9733916164a000ef3ac48da93/tmk_core/common/matrix.h
+        [ ] What is this?
+
+[ ] Make a test json
 
 
 
-[ ] Parsing for normal layers?
+[ ] Parsing for normal layers (with the keycode expanding).
 [ ] Ability to put "simple" chords into "control" chords
 [ ] Ability to extend the engine
-
-
-
-https://github.com/qmk/qmk_firmware/blob/e1203a222bb12ab9733916164a000ef3ac48da93/tmk_core/common/matrix.h
+    [ ] What? How?

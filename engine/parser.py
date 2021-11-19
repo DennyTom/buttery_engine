@@ -44,15 +44,6 @@ def parse_pseudolayers(keymap_def):
     {reduce(comma_separator, [pseudolayer["name"] for pseudolayer in keymap_def["pseudolayers"]])}
 }};"""
 
-def parse_layers(keymap_def):
-    layout_name = keymap_def["parameters"]["layout_function_name"]
-    layers = []
-    for idx, layer in enumerate(keymap_def["layers"]):
-        if layer["type"] == "auto":
-            keys = reduce(comma_separator, keymap_def["keys"])
-            layers.append(f"[{idx}] = {layout_name}({keys})")
-    return reduce(newline_comma_separator, layers)
-
 def parse_keyboard_parameters(keymap_def):
     params = keymap_def["parameters"]
     return f"""#define CHORD_TIMEOUT {params["chord_timeout"]}
@@ -64,14 +55,29 @@ def parse_keyboard_parameters(keymap_def):
 #define COMMAND_MAX_LENGTH {params["command_max_length"]}
 #define STRING_MAX_LENGTH {params["string_max_length"]}
 #define LEADER_MAX_LENGTH {params["leader_max_length"]}
-#define DEFAULT_PSEUDOLAYER {params["default_pseudolayer"]}
+#define DEFAULT_PSEUDOLAYER {params["default_pseudolayer"]}"""
 
-const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {{
+def parse_layers(keymap_def):
+    layout_name = keymap_def["parameters"]["layout_function_name"]
+    layers = []
+    for idx, layer in enumerate(keymap_def["layers"]):
+        if layer["type"] == "auto":
+            keys = reduce(comma_separator, keymap_def["keys"])
+            layers.append(f"[{idx}] = {layout_name}({keys})")
+        else:
+            keys = reduce(comma_separator, layer["keycodes"])
+            layers.append(f"[{idx}] = {layout_name}({keys})")
+    return reduce(newline_comma_separator, layers)
+
+def parse_keymaps(keymap_def):
+    return f"""const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {{
     {parse_layers(keymap_def)}
 }};
-size_t keymapsCount = {len(keymap_def["layers"])};
+size_t keymapsCount = {len(keymap_def["layers"])};"""
 
-uint8_t keycodes_buffer_array[] = {{
+def parse_buffers(keymap_def):
+    params = keymap_def["parameters"]
+    return f"""uint8_t keycodes_buffer_array[] = {{
     {reduce(comma_separator, [0 for _ in range(len(keymap_def["keys"]))])}
 }};
 
@@ -95,7 +101,7 @@ def buttery_parser(input_file):
     keycodes = parse_new_keycodes(keymap_def)
     pseudolayers = parse_pseudolayers(keymap_def)
     keyboard_parameters = parse_keyboard_parameters(keymap_def)
-    keymaps = ""
-    buffers = ""
+    keymaps = parse_keymaps(keymap_def)
+    buffers = parse_buffers(keymap_def)
     chords = ""
     return includes, keycodes, pseudolayers, keyboard_parameters, keymaps, buffers, chords
