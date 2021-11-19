@@ -5,8 +5,8 @@
 [ ] Templates in Python
     [x] Main code
     [x] Includes
-    [ ] Keycodes
-    [ ] Pseudolayers
+    [x] Keycodes
+    [x] Pseudolayers
     [ ] Keyboard_parameters
     [ ] Keymaps
     [ ] Buffers
