@@ -1,10 +1,8 @@
 import json
 from functools import reduce
+from engine import chord_parser
+from engine.utils import *
 
-comma_separator = (lambda x, y: str(x) + ", " + str(y))
-newline_comma_separator = (lambda x, y: str(x) + ",\n\t" + str(y))
-string_sum = (lambda x, y: str(x) + " + " + str(y))
-newline_separator = (lambda x, y: str(x) + "\n" + str(y))
 
 def parse_includes(keymap_def):
     includes = [f"#include {file}" for file in keymap_def["extra_dependencies"]]
@@ -103,5 +101,5 @@ def buttery_parser(input_file):
     keyboard_parameters = parse_keyboard_parameters(keymap_def)
     keymaps = parse_keymaps(keymap_def)
     buffers = parse_buffers(keymap_def)
-    chords = ""
+    chords = chord_parser.parse_chords(keymap_def)
     return includes, keycodes, pseudolayers, keyboard_parameters, keymaps, buffers, chords

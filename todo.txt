@@ -10,10 +10,40 @@
     [x] Keyboard_parameters
     [x] Keymaps
         [x] Auto
-        [ x Manual
+        [x] Manual
     [x] Buffers
     [ ] Chords
         [x] expand keycode
+        [ ] individual chords
+            [x] KC
+            [ ] STR
+            [ ] MO
+            [ ] DF
+            [ ] TO
+            [ ] O
+            [ ] KK
+            [ ] KL
+            [ ] KM
+            [ ] AS
+            [ ] AT
+            [ ] LOCK
+            [ ] CMD
+            [ ] LEAD
+            [ ] M
+            [ ] MK
+            [ ] D
+            [ ] DM_RECORD, DM_NEXT, DM_END, DM_PLAY
+            [ ] CLEAR_KB
+            [ ] RESET
+
+            [ ] function that actually adds the chords
+                [ ] extract this function out into a new Pseudolayer_parser
+                [ ] chord sets loader
+        [ ] multiple chords
+        [ ] secret chord ???
+
+        [ ] list of chords
+        [ ] list of leader sequences
 [ ] Constants
     [x] Alt keycodes
     [x] Keycode definitions list
