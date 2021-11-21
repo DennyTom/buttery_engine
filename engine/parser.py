@@ -95,11 +95,13 @@ def buttery_parser(input_file):
     with open(input_file, "r") as file:
         keymap_def = json.load(file)
 
-    includes = parse_includes(keymap_def)
-    keycodes = parse_new_keycodes(keymap_def)
-    pseudolayers = parse_pseudolayers(keymap_def)
-    keyboard_parameters = parse_keyboard_parameters(keymap_def)
-    keymaps = parse_keymaps(keymap_def)
-    buffers = parse_buffers(keymap_def)
-    chords = chord_parser.parse_chords(keymap_def)
-    return includes, keycodes, pseudolayers, keyboard_parameters, keymaps, buffers, chords
+    result = {}
+
+    result["includes"] = parse_includes(keymap_def)
+    result["keycodes"] = parse_new_keycodes(keymap_def)
+    result["pseudolayers"] = parse_pseudolayers(keymap_def)
+    result["keyboard_parameters"] = parse_keyboard_parameters(keymap_def)
+    result["keymaps"] = parse_keymaps(keymap_def)
+    result["buffers"] = parse_buffers(keymap_def)
+    result["chords"] = chord_parser.parse_chords(keymap_def)
+    return result

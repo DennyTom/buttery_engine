@@ -175,9 +175,7 @@ void tap_key(int16_t keycode) {{
     wait_ms(TAP_TIMEOUT);
     key_out(keycode);
 }}
-const char * const strings[] PROGMEM = {{
 
-}};
 void single_dance(const struct Chord* self) {{
     switch (*self->state) {{
         case ACTIVATED:

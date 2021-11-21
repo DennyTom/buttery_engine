@@ -19,16 +19,16 @@ if __name__ == "__main__":
     with open('engine/template.txt', 'r') as file:
         template = file.read()
 
-    includes, keycodes, pseudolayers, keyboard_parameters, keymaps, buffers, chords = buttery_parser(args.input)
+    result = buttery_parser(args.input)
 
     keymap = template.format(
-        includes = includes,
-        keycodes = keycodes,
-        pseudolayers = pseudolayers,
-        keyboard_parameters = keyboard_parameters,
-        keymaps = keymaps,
-        buffers = buffers,
-        chords = chords
+        includes = result["includes"],
+        keycodes = result["keycodes"],
+        pseudolayers = result["pseudolayers"],
+        keyboard_parameters = result["keyboard_parameters"],
+        keymaps = result["keymaps"],
+        buffers = result["buffers"],
+        chords = result["chords"]
     )
 
     with open('keymap.c', 'w') as file:

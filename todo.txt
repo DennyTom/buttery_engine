@@ -16,9 +16,10 @@
         [x] expand keycode
         [ ] individual chords
             [x] KC
-            [ ] STR
-            [ ] MO
-            [ ] DF
+            [x] STR
+            [x] MO
+            [ ] MO_alt -- why does this exist ?!?
+            [x] DF
             [ ] TO
             [ ] O
             [ ] KK
@@ -42,8 +43,9 @@
         [ ] multiple chords
         [ ] secret chord ???
 
-        [ ] list of chords
+        [x] list of chords
         [ ] list of leader sequences
+        [x] list of strings
 [ ] Constants
     [x] Alt keycodes
     [x] Keycode definitions list
