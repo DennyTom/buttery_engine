@@ -31,8 +31,9 @@
             [x] LOCK
             [x] CMD
             [x] LEAD
-            [ ] M
-            [ ] MK
+            [x] M
+                [ ] add a test
+            [x] MK
             [ ] D
             [x] DM_RECORD, DM_NEXT, DM_END, DM_PLAY
             [x] CLEAR_KB

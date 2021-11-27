@@ -147,6 +147,11 @@
           "type": "simple",
           "chord": ["BOT10"],
           "keycode": "RESET"
+        },
+        {
+          "type": "simple",
+          "chord": ["BOT11"],
+          "keycode": "MK(A, B, C, D)"
         }
       ]
     }

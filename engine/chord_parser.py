@@ -184,18 +184,46 @@ def add_simple_chord(pseudolayer, original_keycode, chord_keys):
             value1 = 0, 
             value2 = 0,
             function = "leader"))
-    # elif keycode.startswith("M("):
-    #     fnc = unpack_by_chars(original_keycode, '(', ')').split(",")[0].strip()
-    #     value1 = unpack_by_chars(original_keycode, '(', ')').split(",")[1].strip()
-    #     value2 = unpack_by_chars(original_keycode, '(', ')').split(",")[2].strip()
+    elif keycode.startswith("M("):
+        fnc = unpack_by_chars(original_keycode, '(', ')').split(",")[0].strip()
+        value1 = unpack_by_chars(original_keycode, '(', ')').split(",")[1].strip()
+        value2 = unpack_by_chars(original_keycode, '(', ')').split(",")[2].strip()
 
-    #     chords.append(my_format(s = chord_without_counter,
-    #         index = len(chords),
-    #         on_pseudolayer = pseudolayer,
-    #         keycodes_hash = hash,
-    #         value1 = value1, 
-    #         value2 = value2,
-    #         function = fnc)
+        chords.append(my_format(s = chord_without_counter,
+            index = len(chords),
+            on_pseudolayer = pseudolayer,
+            keycodes_hash = hash,
+            value1 = value1, 
+            value2 = value2,
+            function = fnc))
+    elif keycode.startswith("MK"):
+        keycodes = [expand_keycode(y.strip()) for y in unpack_by_chars(original_keycode, '(', ')').split(",")]
+        key_ins = reduce(newline_separator, [f"{12*' '}key_in({y});" for y in keycodes])
+        key_outs = reduce(newline_separator, [f"{12*' '}key_out({y});" for y in keycodes])
+        fnc = f"""void function_{len(chords)}(const struct Chord* self) {{
+    switch (*self->state) {{
+        case ACTIVATED:
+{key_ins}
+            break;
+        case DEACTIVATED:
+{key_outs}
+            *self->state = IDLE;
+            break;
+        case RESTART:
+{key_outs}
+            break;
+        default:
+            break;
+    }};
+}}
+"""
+        chords.append(fnc + my_format(s = chord_with_counter,
+            index = len(chords),
+            on_pseudolayer = pseudolayer,
+            keycodes_hash = hash,
+            value1 = 0, 
+            value2 = 0,
+            function = f"function_{len(chords)}"))
     elif keycode.startswith("DM_RECORD"):
         chords.append(my_format(s = chord_without_counter,
             index = len(chords),
