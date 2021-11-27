@@ -39,115 +39,118 @@
       "name": "ALWAYS_ON",
       "chords": [
         {
-          "type": "visual",
-          "chord": [
-            "X", " ", " ", " ", " ", " ",    " ", " ", " ", " ", " ", "X",
-            "X", " ", " ", " ", " ", " ",    " ", " ", " ", " ", " ", "X",
-                           " ", " ", " ",    " ", " ", " "
-          ],
+          "type": "simple",
+          "chord": ["TOP1"],
+          "keycode": "A"
+        },
+        {
+          "type": "simple",
+          "chord": ["TOP2"],
+          "keycode": "STR('Hi')"
+        },
+        {
+          "type": "simple",
+          "chord": ["TOP13"],
+          "keycode": "STR('Bye')"
+        },
+        {
+          "type": "simple",
+          "chord": ["TOP4"],
+          "keycode": "MO(ALWAYS_ON)"
+        },
+        {
+          "type": "simple",
+          "chord": ["TOP5"],
+          "keycode": "DF(ALWAYS_ON)"
+        },
+        {
+          "type": "simple",
+          "chord": ["TOP6"],
+          "keycode": "TO(ALWAYS_ON)"
+        },
+        {
+          "type": "simple",
+          "chord": ["TOP7"],
+          "keycode": "OSK(A)"
+        },
+        {
+          "type": "simple",
+          "chord": ["TOP8"],
+          "keycode": "OSL(ALWAYS_ON)"
+        },
+        {
+          "type": "simple",
+          "chord": ["TOP9"],
+          "keycode": "KK(A, B)"
+        },
+        {
+          "type": "simple",
+          "chord": ["TOP10"],
+          "keycode": "KL(A, ALWAYS_ON)"
+        },
+        {
+          "type": "simple",
+          "chord": ["TOP11"],
+          "keycode": "KM(A, LSFT)"
+        },
+        {
+          "type": "simple",
+          "chord": ["TOP12"],
+          "keycode": "AS(A)"
+        },
+        {
+          "type": "simple",
+          "chord": ["BOT1"],
+          "keycode": "AT"
+        },
+        {
+          "type": "simple",
+          "chord": ["BOT2"],
+          "keycode": "LOCK"
+        },
+        {
+          "type": "simple",
+          "chord": ["BOT3"],
+          "keycode": "CMD"
+        },
+        {
+          "type": "simple",
+          "chord": ["BOT4"],
+          "keycode": "LEAD"
+        },
+        {
+          "type": "simple",
+          "chord": ["BOT5"],
+          "keycode": "DM_RECORD"
+        },
+        {
+          "type": "simple",
+          "chord": ["BOT6"],
+          "keycode": "DM_NEXT"
+        },
+        {
+          "type": "simple",
+          "chord": ["BOT7"],
+          "keycode": "DM_END"
+        },
+        {
+          "type": "simple",
+          "chord": ["BOT8"],
+          "keycode": "DM_PLAY"
+        },
+        {
+          "type": "simple",
+          "chord": ["BOT9"],
           "keycode": "CLEAR_KB"
         },
         {
-          "type": "visual",
-          "chord": [
-            " ", " ", " ", " ", " ", "X",    "X", " ", " ", " ", " ", " ",
-            " ", " ", " ", " ", " ", "X",    "X", " ", " ", " ", " ", " ",
-                           " ", " ", " ",    " ", " ", " "
-          ],
-          "keycode": "CMD"
-        }
-      ]
-    },
-    {
-      "name": "QWERTY",
-      "chords": [
-        {
-          "type": "chord_set",
-          "set": "rows",
-          "keycodes": [
-            "ESC", "Q",           "W",           "E",            "R",           "T",        "Y",           "U",            "I",           "O",           "P", "\\", 
-            "INS", "A", "KK(S, LALT)", "KM(D, LCTL)",  "KM(F, LSFT)", "KK(G, LGUI)",        "KK(H, RGUI)", "KM(J, RSFT)",  "KM(K, RCTL)", "KK(L, RALT)", ";", " ",
-            "TAB", "Z",           "X",           "C",            "V",           "B",        "N",           "M",            ",",           ".",           "/", "'",
-                                           "","","","","",""
-          ]
-        },
-        {
-          "type": "visual_array",
-          "keys": ["THU1", "THU2", "THU3", "THU4", "THU5", "THU6"],
-          "dictionary": [
-            ["X", " ", " ", " ", " ", " ", "ENTER"],
-            [" ", "X", " ", " ", " ", " ", "KL(SPC, NUM)"],
-            [" ", " ", "X", " ", " ", " ", "KL(BSPC, NAV)"],
-            [" ", " ", " ", "X", " ", " ", "DEL"],
-            [" ", " ", " ", " ", "X", " ", "KL(SPC, FNC)"],
-            [" ", " ", " ", " ", " ", "X", "ENTER"],
-            [" ", "X", "X", " ", " ", " ", "MO(MOUSE)"]
-          ]
-        }
-      ]
-    },
-    {
-      "name": "NUM",
-      "chords": [
-        {
-          "type": "chord_set",
-          "set": "rows",
-          "keycodes": [
-            "`", "1",    "2",    "3",    "4",    "5",        "6",    "7",    "8",    "9",    "0", "-", 
-            " ", " ", "LALT", "LCTL", "LSFT", "LGUI",        "RGUI", "RSFT", "RCTL", "RALT", " ", " ",
-            " ", " ",    " ",    " ",    " ",    " ",        " ",    " ",    " ",    "[",    "]", "=",
-                                         " ",    " ",        " ",    " ",    " ",    " "
-          ]
-        }
-      ]
-    },
-    {
-      "name": "FNC",
-      "chords": [
-        {
-          "type": "chord_set",
-          "set": "rows",
-          "keycodes": [
-            " ", "F1",   "F2",   "F3",   "F4",   "F5",        "F6",   "F7",   "F8",   "F9",   "F10", "F11", 
-            " ",  " ", "LALT", "LCTL", "LSFT", "LGUI",        "RGUI", "RSFT", "RCTL", "RALT", " ",   " ",
-            " ",  " ",    " ",    " ",    " ",    " ",        " ",    " ",    " ",    " ",    " ",   "F12",
-                                  " ",    " ",    " ",        " ",    " ",    " "
-          ]
-        }
-      ]
-    },
-    {
-      "name": "NAV",
-      "chords": [
-        {
-          "type": "chord_set",
-          "set": "rows",
-          "keycodes": [
-            " ", " ",    " ",    " ",    " ",    " ",        " ", "HOME", "UP",   "END",   "PGUP", " ", 
-            " ", " ", "LALT", "LCTL", "LSFT", "LGUI",        " ", " ",    " ",    " ",     " ",    " ",
-            " ", " ",    " ",    " ",    " ",    " ",        " ", "LEFT", "DOWN", "RIGHT", "PGDN", " ",
-                                 " ",    " ",    " ",        " ", " ",    " "
-          ]
-        }
-      ]
-    },
-    {
-      "name": "MOUSE",
-      "chords": [
-        {
-          "type": "chord_set",
-          "set": "rows",
-          "keycodes": [
-            " ", " ",    " ",    " ",    " ",    " ",        " ", "BTN1", "MS_U", "BTN2", "WH_U", " ", 
-            " ", " ", "LALT", "LCTL", "LSFT", "LGUI",        " ", " ",    " ",    " ",    " ",    " ",
-            " ", " ",    " ",    " ",    " ",    " ",        " ", "MS_L", "MS_D", "MS_R", "WH_D", " ",
-                                 " ",    " ",    " ",        " ", " ",    " "
-          ]
+          "type": "simple",
+          "chord": ["BOT10"],
+          "keycode": "RESET"
         }
       ]
     }
   ],
   "leader_sequences": [],
-  "extra_code": "",
-  "extra_dependencies": []
+  "extra_dependencies": ["file1.h", "file2.h"]
 }

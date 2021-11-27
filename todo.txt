@@ -20,22 +20,23 @@
             [x] MO
             [ ] MO_alt -- why does this exist ?!?
             [x] DF
-            [ ] TO
-            [ ] O
-            [ ] KK
-            [ ] KL
-            [ ] KM
-            [ ] AS
-            [ ] AT
-            [ ] LOCK
-            [ ] CMD
-            [ ] LEAD
+            [x] TO
+            [x] OSK
+            [x] OSL
+            [x] KK
+            [x] KL
+            [x] KM
+            [x] AS
+            [x] AT
+            [x] LOCK
+            [x] CMD
+            [x] LEAD
             [ ] M
             [ ] MK
             [ ] D
-            [ ] DM_RECORD, DM_NEXT, DM_END, DM_PLAY
-            [ ] CLEAR_KB
-            [ ] RESET
+            [x] DM_RECORD, DM_NEXT, DM_END, DM_PLAY
+            [x] CLEAR_KB
+            [x] RESET
 
             [ ] function that actually adds the chords
                 [ ] extract this function out into a new Pseudolayer_parser
@@ -46,15 +47,21 @@
         [x] list of chords
         [ ] list of leader sequences
         [x] list of strings
+
+        [ ] check that all chords have been added or really weird behavior can happen
 [ ] Constants
     [x] Alt keycodes
+    [ ] "(" not properly parsed
+    [ ] Alt codes for mods (SFT -> KC_LSFT etc)
     [x] Keycode definitions list
+[ ] Change the keycode processing by adding a keycode class instead of parsing the keycode string in 50 places
 
 [ ] Fix up README
     [ ] Removed extra code -- just use a include, it will be more readable anyway
     [ ] I don't use pyexpander anymore
     [ ] Layers
     [ ] Explain the keyboard params better
+    [ ] Explain that the order of chords matters
 
 [ ] Delete the schema, seems to be wrong anyway
 
@@ -74,7 +81,8 @@
 [ ] Make a test json
 
 [ ] Extending the engine
-    [ ] Parsing for QMK layers with the keycode expanding
+    [ ] Parsing for standard QMK layers with the keycode expanding
+    [ ] Extending smart parsing -- O(something) -> OSK or OSL, etc ?
     [ ] @Florent -- request for alternative KM() behavior that requires per chord timers
     [ ] Nested keycodes like KK(A, LSFT + LALT)
     [ ] Adding the option for process_user() ?

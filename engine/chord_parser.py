@@ -75,12 +75,176 @@ def add_simple_chord(pseudolayer, original_keycode, chord_keys):
         to_pseudolayer = unpack_by_chars(original_keycode, '(', ')')
 
         chords.append(my_format(s = chord_without_counter,
-        index = len(chords),
-        on_pseudolayer = pseudolayer,
-        keycodes_hash = hash,
-        value1 = to_pseudolayer, 
-        value2 = 0,
-        function = "perm_pseudolayer"))
+            index = len(chords),
+            on_pseudolayer = pseudolayer,
+            keycodes_hash = hash,
+            value1 = to_pseudolayer, 
+            value2 = 0,
+            function = "perm_pseudolayer"))
+    elif keycode.startswith("TO"):
+        to_pseudolayer = unpack_by_chars(original_keycode, '(', ')')
+
+        chords.append(my_format(s = chord_without_counter,
+            index = len(chords),
+            on_pseudolayer = pseudolayer,
+            keycodes_hash = hash,
+            value1 = to_pseudolayer, 
+            value2 = 0,
+            function = "switch_layer"))
+    elif keycode.startswith("OSK"):
+        keycode = expand_keycode(unpack_by_chars(original_keycode, '(', ')'))
+
+        chords.append(my_format(s = chord_without_counter,
+            index = len(chords),
+            on_pseudolayer = pseudolayer,
+            keycodes_hash = hash,
+            value1 = keycode, 
+            value2 = 0,
+            function = "one_shot_key"))
+    elif keycode.startswith("OSL"):
+        to_pseudolayer = unpack_by_chars(original_keycode, '(', ')')
+
+        chords.append(my_format(s = chord_without_counter,
+            index = len(chords),
+            on_pseudolayer = pseudolayer,
+            keycodes_hash = hash,
+            value1 = to_pseudolayer, 
+            value2 = 0,
+            function = "one_shot_layer"))
+    elif keycode.startswith("KK"):
+        keycodes = [expand_keycode(y.strip()) for y in unpack_by_chars(original_keycode, '(', ')').split(",")]
+
+        chords.append(my_format(s = chord_with_counter,
+            index = len(chords),
+            on_pseudolayer = pseudolayer,
+            keycodes_hash = hash,
+            value1 = keycodes[0], 
+            value2 = keycodes[1],
+            function = "key_key_dance"))
+    elif keycode.startswith("KL"):
+        keycode = expand_keycode(unpack_by_chars(original_keycode, '(', ')').split(",")[0].strip())
+        to_pseudolayer = unpack_by_chars(original_keycode, '(', ')').split(",")[1].strip()
+
+        chords.append(my_format(s = chord_with_counter,
+            index = len(chords),
+            on_pseudolayer = pseudolayer,
+            keycodes_hash = hash,
+            value1 = keycode, 
+            value2 = to_pseudolayer,
+            function = "key_layer_dance"))
+    elif keycode.startswith("KM"):
+        keycodes = [expand_keycode(y.strip()) for y in unpack_by_chars(original_keycode, '(', ')').split(",")]
+
+        chords.append(my_format(s = chord_with_counter,
+            index = len(chords),
+            on_pseudolayer = pseudolayer,
+            keycodes_hash = hash,
+            value1 = keycodes[0], 
+            value2 = keycodes[1],
+            function = "key_mod_dance"))
+    elif keycode.startswith("AS"):
+        keycode = expand_keycode(unpack_by_chars(original_keycode, '(', ')'))
+
+        chords.append(my_format(s = chord_with_counter,
+            index = len(chords),
+            on_pseudolayer = pseudolayer,
+            keycodes_hash = hash,
+            value1 = keycode, 
+            value2 = 0,
+            function = "autoshift_dance"))
+    elif keycode.startswith("AT"):
+        chords.append(my_format(s = chord_without_counter,
+            index = len(chords),
+            on_pseudolayer = pseudolayer,
+            keycodes_hash = hash,
+            value1 = 0, 
+            value2 = 0,
+            function = "autoshift_toggle"))
+    elif keycode.startswith("LOCK"):
+        chords.append(my_format(s = chord_without_counter,
+            index = len(chords),
+            on_pseudolayer = pseudolayer,
+            keycodes_hash = hash,
+            value1 = 0, 
+            value2 = 0,
+            function = "lock"))
+    elif keycode.startswith("CMD"):
+        chords.append(my_format(s = chord_without_counter,
+            index = len(chords),
+            on_pseudolayer = pseudolayer,
+            keycodes_hash = hash,
+            value1 = 0, 
+            value2 = 0,
+            function = "command"))
+    elif keycode.startswith("LEAD"):
+        chords.append(my_format(s = chord_without_counter,
+            index = len(chords),
+            on_pseudolayer = pseudolayer,
+            keycodes_hash = hash,
+            value1 = 0, 
+            value2 = 0,
+            function = "leader"))
+    # elif keycode.startswith("M("):
+    #     fnc = unpack_by_chars(original_keycode, '(', ')').split(",")[0].strip()
+    #     value1 = unpack_by_chars(original_keycode, '(', ')').split(",")[1].strip()
+    #     value2 = unpack_by_chars(original_keycode, '(', ')').split(",")[2].strip()
+
+    #     chords.append(my_format(s = chord_without_counter,
+    #         index = len(chords),
+    #         on_pseudolayer = pseudolayer,
+    #         keycodes_hash = hash,
+    #         value1 = value1, 
+    #         value2 = value2,
+    #         function = fnc)
+    elif keycode.startswith("DM_RECORD"):
+        chords.append(my_format(s = chord_without_counter,
+            index = len(chords),
+            on_pseudolayer = pseudolayer,
+            keycodes_hash = hash,
+            value1 = 0, 
+            value2 = 0,
+            function = "dynamic_macro_record"))
+    elif keycode.startswith("DM_NEXT"):
+        chords.append(my_format(s = chord_without_counter,
+            index = len(chords),
+            on_pseudolayer = pseudolayer,
+            keycodes_hash = hash,
+            value1 = 0, 
+            value2 = 0,
+            function = "dynamic_macro_next"))
+    elif keycode.startswith("DM_END"):
+        chords.append(my_format(s = chord_without_counter,
+            index = len(chords),
+            on_pseudolayer = pseudolayer,
+            keycodes_hash = hash,
+            value1 = 0, 
+            value2 = 0,
+            function = "dynamic_macro_end"))
+    elif keycode.startswith("DM_PLAY"):
+        chords.append(my_format(s = chord_without_counter,
+            index = len(chords),
+            on_pseudolayer = pseudolayer,
+            keycodes_hash = hash,
+            value1 = 0, 
+            value2 = 0,
+            function = "dynamic_macro_play"))
+    elif keycode.startswith("CLEAR_KB"):
+        chords.append(my_format(s = chord_without_counter,
+            index = len(chords),
+            on_pseudolayer = pseudolayer,
+            keycodes_hash = hash,
+            value1 = 0, 
+            value2 = 0,
+            function = "clear"))
+    elif keycode.startswith("RESET"):
+        chords.append(my_format(s = chord_without_counter,
+            index = len(chords),
+            on_pseudolayer = pseudolayer,
+            keycodes_hash = hash,
+            value1 = 0, 
+            value2 = 0,
+            function = "reset"))
+
 
 def parse_chords(keymap_def):
     global chords
