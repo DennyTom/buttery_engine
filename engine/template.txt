@@ -665,7 +665,7 @@ void process_ready_chords(void) {{
             chord = &chord_storage;
             
             // if the chord does not contain the first keycode
-            bool contains_first_keycode = ((uint32_t) 1 << first_keycode_index) & chord->keycodes_hash;
+            bool contains_first_keycode = ((HASH_TYPE) 1 << first_keycode_index) & chord->keycodes_hash;
             if (!contains_first_keycode) {{
                 continue;
             }}

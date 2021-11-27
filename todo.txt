@@ -49,27 +49,32 @@
 [ ] Constants
     [x] Alt keycodes
     [x] Keycode definitions list
-    [ ] Anything else?
 
 [ ] Fix up README
     [ ] Removed extra code -- just use a include, it will be more readable anyway
     [ ] I don't use pyexpander anymore
     [ ] Layers
+    [ ] Explain the keyboard params better
 
 [ ] Delete the schema, seems to be wrong anyway
 
 [ ] Fix up the engine
     [ ] Get the tests running again
-    [ ] What is keycodes_buffer_array?
+    [ ] Document the code
+    [ ] @Florent -- If some keys are never assigned, when hit, the keyboard will ignore the next N-1 keys (any key), where N is the max number of keys in a chord. This is solved by assigning those unused keys to KC_NO.
+    [ ] @kbjunky -- Mouse issues
+    [ ] @kbjunky -- there's leader_ind = 0; missing at the end of process_leader function
+    [x] @supertoughfrom -- fix uint32_t instead of HASH_TYPE in a few places
+    [ ] Try removing tap_timeout
+    [ ] send_keyboard_report after register_code is not needed, the same for unregister_code
     [ ] Transfer from keycodes_hash to an array
-    [ ] https://github.com/qmk/qmk_firmware/blob/e1203a222bb12ab9733916164a000ef3ac48da93/tmk_core/common/matrix.h
-        [ ] What is this?
+    [ ] Instead of hooking into process_keycode_user(), directly read the matrix?
+        [ ] https://github.com/qmk/qmk_firmware/blob/e1203a222bb12ab9733916164a000ef3ac48da93/tmk_core/common/matrix.h
 
 [ ] Make a test json
 
-
-
-[ ] Parsing for normal layers (with the keycode expanding).
-[ ] Ability to put "simple" chords into "control" chords
-[ ] Ability to extend the engine
-    [ ] What? How?
+[ ] Extending the engine
+    [ ] Parsing for QMK layers with the keycode expanding
+    [ ] @Florent -- request for alternative KM() behavior that requires per chord timers
+    [ ] Nested keycodes like KK(A, LSFT + LALT)
+    [ ] Adding the option for process_user() ?
