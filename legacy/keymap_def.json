@@ -41,7 +41,7 @@
         {
           "type": "simple",
           "chord": ["TOP1"],
-          "keycode": "A"
+          "keycode": ""
         },
         {
           "type": "simple",
@@ -157,6 +157,15 @@
           "type": "simple",
           "chord": ["BOT12"],
           "keycode": "D(A, B, C, D)"
+        },
+        {
+          "type": "visual",
+          "keycode": "A",
+          "chord": [
+            "", "", "", "", "", " ",    " ", "", "", "", "", "",
+            "", "", "", "", "", " ",    " ", "", "", "", "", "",
+                        "", "", "X",    "X", "", ""
+          ]
         }
       ]
     }

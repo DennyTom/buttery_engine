@@ -14,11 +14,10 @@
     [x] Buffers
     [ ] Chords
         [x] expand keycode
-        [ ] individual chords
+        [x] individual chords
             [x] KC
             [x] STR
             [x] MO
-            [ ] MO_alt -- why does this exist ?!?
             [x] DF
             [x] TO
             [x] OSK
@@ -32,27 +31,26 @@
             [x] CMD
             [x] LEAD
             [x] M
-                [ ] add a test
             [x] MK
             [x] D
             [x] DM_RECORD, DM_NEXT, DM_END, DM_PLAY
             [x] CLEAR_KB
             [x] RESET
 
-            [ ] function that actually adds the chords
-                [ ] extract this function out into a new Pseudolayer_parser
-                [ ] chord sets loader
-        [ ] multiple chords
-        [ ] secret chord ???
-
+        [x] visual
+        [ ] visual array
+        [ ] chord sets
+            [ ] definitions
+            [ ] chord parsing
+                
         [x] list of chords
         [x] list of leader sequences
         [x] list of strings
 
-        [ ] check that all chords have been added or really weird behavior can happen
+        [ ] @Florent -- check that all chords have been added or really weird behavior can happen
 [ ] Constants
     [x] Alt keycodes
-    [ ] "(" not properly parsed
+    [ ] @Florent -- "(" not properly parsed
     [ ] Alt codes for mods (SFT -> KC_LSFT etc)
     [x] Keycode definitions list
 [ ] Change the keycode processing by adding a keycode class instead of parsing the keycode string in 50 places

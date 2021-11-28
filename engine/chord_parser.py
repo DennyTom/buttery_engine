@@ -319,6 +319,9 @@ def add_simple_chord(pseudolayer, original_keycode, chord_keys):
             value2 = 0,
             function = "reset"))
 
+def add_visual_chord(pseudolayer, keycode, chord, keys):
+    sum_chord = [keys[i] for i, x in enumerate(chord) if x == "X" or x == "x"]
+    add_simple_chord(pseudolayer, keycode, sum_chord)
 
 def parse_chords(keymap_def):
     global chords
@@ -329,7 +332,7 @@ def parse_chords(keymap_def):
             if chord["type"] == "simple":
                 add_simple_chord(pseudolayer["name"], chord["keycode"], chord["chord"])
             elif chord["type"] == "visual":
-                pass
+                add_visual_chord(pseudolayer["name"], chord["keycode"], chord["chord"], keymap_def["keys"])
             elif chord["type"] == "visual_array":
                 pass
             elif chord["type"] == "chord_set":
