@@ -1,4 +1,6 @@
 digraph {
+	
+
 	subgraph cluster_0 {
 		IDLE
 		READY
@@ -56,6 +58,37 @@ digraph {
 
 	// deactivate_active_chords()
 	ACTIVATED -> DEACTIVATED [label="a key lifted", color="purple"];
-	PRESS_FROM_ACTIVE -> RESTART [label="a key lifted", color="orange"];
-	FINISHED_FROM_ACTIVE -> DEACTIVATED [label="a key lifted", color="orange"];
+	PRESS_FROM_ACTIVE -> RESTART [label="a key lifted", color="purple"];
+	FINISHED_FROM_ACTIVE -> DEACTIVATED [label="a key lifted", color="purple"];
+
+	
+  	subgraph cluster_legend {
+		node [shape=plaintext]
+
+		label = "Legend";
+		key [label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
+			<tr><td align="right" port="i1">automated</td></tr>
+			<tr><td align="right" port="i2">kill_one_shots()</td></tr>
+			<tr><td align="right" port="i3">process_finished_dances()</td></tr>
+			<tr><td align="right" port="i4">remove_subchords()</td></tr>
+			<tr><td align="right" port="i5">process_ready_chords()</td></tr>
+			<tr><td align="right" port="i6">deactivate_active_chords()</td></tr>
+			</table>>]
+		key2 [label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
+			<tr><td port="i1">&nbsp;</td></tr>
+			<tr><td port="i2">&nbsp;</td></tr>
+			<tr><td port="i3">&nbsp;</td></tr>
+			<tr><td port="i4">&nbsp;</td></tr>
+			<tr><td port="i5">&nbsp;</td></tr>
+			<tr><td port="i6">&nbsp;</td></tr>
+			</table>>]
+    	key:i1:e -> key2:i1:w
+    	key:i2:e -> key2:i2:w [color=blue]
+    	key:i3:e -> key2:i3:w [color=green]
+    	key:i4:e -> key2:i4:w [color=red]
+		key:i5:e -> key2:i5:w [color=orange]
+		key:i6:e -> key2:i6:w [color=purple]
+
+		{rank=same; key, key2 }
+	}
 }
