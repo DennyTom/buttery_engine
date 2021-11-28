@@ -152,6 +152,11 @@
           "type": "simple",
           "chord": ["BOT11"],
           "keycode": "MK(A, B, C, D)"
+        },
+        {
+          "type": "simple",
+          "chord": ["BOT12"],
+          "keycode": "D(A, B, C, D)"
         }
       ]
     }

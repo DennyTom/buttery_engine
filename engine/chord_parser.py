@@ -224,6 +224,52 @@ def add_simple_chord(pseudolayer, original_keycode, chord_keys):
             value1 = 0, 
             value2 = 0,
             function = f"function_{len(chords)}"))
+    elif keycode.startswith("D("):
+        keycodes = [expand_keycode(y.strip()) for y in unpack_by_chars(original_keycode, '(', ')').split(",")]
+        key_ins = reduce(newline_separator, [f"{16*' '}case {i+1}:\n{20*' '}key_in({y});\n{20*' '}break;" for i, y in enumerate(keycodes)])
+        key_outs = reduce(newline_separator, [f"{16*' '}case {i+1}:\n{20*' '}key_out({y});\n{20*' '}break;" for i, y in enumerate(keycodes)])
+        fnc = f"""void function_{len(chords)}(const struct Chord* self) {{
+    switch (*self->state) {{
+        case ACTIVATED:
+            *self->counter = *self->counter + 1;
+            break;
+        case PRESS_FROM_ACTIVE:
+            switch (*self->counter) {{
+{key_ins}
+                default:
+                    break;
+            }}
+            *self->state = FINISHED_FROM_ACTIVE;
+            break;
+        case FINISHED:
+            switch (*self->counter) {{
+{key_outs}
+                default:
+                    break;
+            }}
+            *self->counter = 0;
+            *self->state = IDLE;
+            break;
+        case RESTART:
+            switch (*self->counter) {{
+{key_outs}
+                default:
+                    break;
+            }}
+            *self->counter = 0;
+            break;
+        default:
+            break;
+    }};
+}}
+"""
+        chords.append(fnc + my_format(s = chord_with_counter,
+            index = len(chords),
+            on_pseudolayer = pseudolayer,
+            keycodes_hash = hash,
+            value1 = 0, 
+            value2 = 0,
+            function = f"function_{len(chords)}"))
     elif keycode.startswith("DM_RECORD"):
         chords.append(my_format(s = chord_without_counter,
             index = len(chords),
