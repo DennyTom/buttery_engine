@@ -28,7 +28,8 @@ if __name__ == "__main__":
         keyboard_parameters = result["keyboard_parameters"],
         keymaps = result["keymaps"],
         buffers = result["buffers"],
-        chords = result["chords"]
+        chords = result["chords"],
+        leader_sequences = result["leader_sequences"]
     )
 
     with open('keymap.c', 'w') as file:

@@ -340,13 +340,13 @@ def parse_chords(keymap_def):
 
     result = f"""{reduce(newline_separator, chords)}
 #define NUMBER_OF_CHORDS {len(chords)}
+
 const struct Chord* const list_of_chords[] PROGMEM = {{
     {chord_list}
 }};
 
 const char * const strings[] PROGMEM = {{
     {reduce(comma_separator, strings)}
-}};
-"""
+}};"""
 
     return result

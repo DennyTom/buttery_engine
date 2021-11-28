@@ -502,6 +502,8 @@ void reset(const struct Chord* self) {{
 
 {chords}
 
+{leader_sequences}
+
 bool are_hashed_keycodes_in_sound(HASH_TYPE keycodes_hash, HASH_TYPE sound) {{
     return (keycodes_hash & sound) == keycodes_hash;
 }}

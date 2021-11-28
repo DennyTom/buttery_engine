@@ -46,7 +46,7 @@
         [ ] secret chord ???
 
         [x] list of chords
-        [ ] list of leader sequences
+        [x] list of leader sequences
         [x] list of strings
 
         [ ] check that all chords have been added or really weird behavior can happen

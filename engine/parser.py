@@ -91,6 +91,31 @@ uint8_t dynamic_macro_buffer[] = {{
     {reduce(comma_separator, [0 for _ in range(params["dynamic_macro_max_length"])])}
 }};"""
 
+def parse_leader_sequences(keymap_def):
+    leader_sequences = keymap_def["leader_sequences"]
+    leader_max_length = keymap_def["parameters"]["leader_max_length"]
+
+    if len(leader_sequences) > 0:
+        fncs = reduce(newline_separator, [sequence["function"] for sequence in leader_sequences])
+        fnc_names = reduce(comma_separator, ["&" + sequence["name"] for sequence in leader_sequences])
+        seqence_defs = [reduce(comma_separator, sequence["sequence"] + ["0"] * (leader_max_length - len(sequence["sequence"]))) for sequence in leader_sequences]
+        sequence_defs = reduce(newline_separator, [f"    {{{s}}}" for s in seqence_defs])
+        return f"""#define NUMBER_OF_LEADER_COMBOS {len(leader_sequences)}
+
+{fncs}
+
+const uint16_t leader_triggers[][LEADER_MAX_LENGTH] PROGMEM = {{
+{sequence_defs}
+}};
+
+void (*leader_functions[]) (void) = {{
+    {fnc_names}
+}};"""
+    else:
+        return """#define NUMBER_OF_LEADER_COMBOS 0
+const uint16_t** const leader_triggers PROGMEM = NULL;
+void (*leader_functions[]) (void) = {};"""
+
 def buttery_parser(input_file):
     with open(input_file, "r") as file:
         keymap_def = json.load(file)
@@ -104,4 +129,5 @@ def buttery_parser(input_file):
     result["keymaps"] = parse_keymaps(keymap_def)
     result["buffers"] = parse_buffers(keymap_def)
     result["chords"] = chord_parser.parse_chords(keymap_def)
+    result["leader_sequences"] = parse_leader_sequences(keymap_def)
     return result

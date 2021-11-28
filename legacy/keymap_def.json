@@ -161,6 +161,17 @@
       ]
     }
   ],
-  "leader_sequences": [],
+  "leader_sequences": [
+    {
+      "name": "fn_L1",
+      "function": "void fn_L1(void) { SEND(KC_LCTL); SEND(KC_LALT); SEND(KC_DEL); }",
+      "sequence": ["KC_Q", "KC_Z"]
+    },
+    {
+      "name": "fn_L2",
+      "function": "void fn_L2(void) { SEND(KC_LCTL); SEND(KC_LALT); SEND(KC_DEL); }",
+      "sequence": ["KC_A", "KC_Z"]
+    }
+  ],
   "extra_dependencies": ["file1.h", "file2.h"]
 }
