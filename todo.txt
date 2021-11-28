@@ -1,8 +1,8 @@
 [ ] Main
     [X] Arg parsing, just input file
-    [ ] The main thing
+    [x] The main thing
     [ ] Error check for template file read?
-[ ] Templates in Python
+[x] Templates in Python
     [x] Main code
     [x] Includes
     [x] Keycodes
@@ -12,7 +12,7 @@
         [x] Auto
         [x] Manual
     [x] Buffers
-    [ ] Chords
+    [x] Chords
         [x] expand keycode
         [x] individual chords
             [x] KC
@@ -38,20 +38,15 @@
             [x] RESET
 
         [x] visual
-        [ ] visual array
-        [ ] chord sets
-            [ ] definitions
-            [ ] chord parsing
+        [x] visual array
+        [x] chord sets
                 
         [x] list of chords
         [x] list of leader sequences
         [x] list of strings
-
-        [ ] @Florent -- check that all chords have been added or really weird behavior can happen
+        
 [ ] Constants
     [x] Alt keycodes
-    [ ] @Florent -- "(" not properly parsed
-    [ ] Alt codes for mods (SFT -> KC_LSFT etc)
     [x] Keycode definitions list
 [ ] Change the keycode processing by adding a keycode class instead of parsing the keycode string in 50 places
 
@@ -65,7 +60,11 @@
 [ ] Delete the schema, seems to be wrong anyway
 
 [ ] Fix up the engine
+    [ ] Create a sample layout
+    [ ] Get it on HW
+    [ ] @Florent -- "(" not properly parsed
     [ ] Get the tests running again
+    [ ] @Florent -- check that all chords have been added or really weird behavior can happen
     [ ] Document the code
     [ ] @Florent -- If some keys are never assigned, when hit, the keyboard will ignore the next N-1 keys (any key), where N is the max number of keys in a chord. This is solved by assigning those unused keys to KC_NO.
     [ ] @kbjunky -- Mouse issues
@@ -80,6 +79,7 @@
 [ ] Make a test json
 
 [ ] Extending the engine
+    [ ] Alt codes for mods (SFT -> KC_LSFT etc)
     [ ] Parsing for standard QMK layers with the keycode expanding
     [ ] Extending smart parsing -- O(something) -> OSK or OSL, etc ?
     [ ] @Florent -- request for alternative KM() behavior that requires per chord timers
